@@ -41,6 +41,59 @@ public class Locacao implements Serializable {
 	public Carro getCarro() {return carro;}
 	public void setCarro(Carro carro) {this.carro = carro;}
 	
+	public Locacao(Date dataDeLocacao, Date dataDeDevolucao, Motorista motorista, Carro carro) {
+		super();
+		this.dataDeLocacao = dataDeLocacao;
+		this.dataDeDevolucao = dataDeDevolucao;
+		this.motorista = motorista;
+		this.carro = carro;
+	}
+	
+	public Locacao() {super();}
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((carro == null) ? 0 : carro.hashCode());
+		result = prime * result + ((dataDeDevolucao == null) ? 0 : dataDeDevolucao.hashCode());
+		result = prime * result + ((dataDeLocacao == null) ? 0 : dataDeLocacao.hashCode());
+		result = prime * result + ((motorista == null) ? 0 : motorista.hashCode());
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Locacao other = (Locacao) obj;
+		if (carro == null) {
+			if (other.carro != null)
+				return false;
+		} else if (!carro.equals(other.carro))
+			return false;
+		if (dataDeDevolucao == null) {
+			if (other.dataDeDevolucao != null)
+				return false;
+		} else if (!dataDeDevolucao.equals(other.dataDeDevolucao))
+			return false;
+		if (dataDeLocacao == null) {
+			if (other.dataDeLocacao != null)
+				return false;
+		} else if (!dataDeLocacao.equals(other.dataDeLocacao))
+			return false;
+		if (motorista == null) {
+			if (other.motorista != null)
+				return false;
+		} else if (!motorista.equals(other.motorista))
+			return false;
+		return true;
+	}
+	
+	
+	
 	
 	
 
