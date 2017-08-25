@@ -1,5 +1,7 @@
 package com.vinicius.pos.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -14,8 +16,13 @@ import org.hibernate.validator.constraints.NotEmpty;
 import com.vinicius.pos.enums.Sexo;
 
 @Entity
-public class Motorista {
+public class Motorista implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1712563492221940710L;
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id; 

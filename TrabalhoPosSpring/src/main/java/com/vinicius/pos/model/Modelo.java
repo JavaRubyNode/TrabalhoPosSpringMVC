@@ -1,5 +1,6 @@
 package com.vinicius.pos.model;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -17,8 +18,13 @@ import javax.persistence.OneToOne;
 import com.vinicius.pos.enums.Categoria;
 
 @Entity
-public class Modelo {
+public class Modelo implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2202489018767195628L;
+
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	private Long id;

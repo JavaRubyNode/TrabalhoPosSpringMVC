@@ -1,5 +1,6 @@
 package com.vinicius.pos.model;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 import javax.persistence.Column;
@@ -15,8 +16,13 @@ import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
-public class Carro {
+public class Carro implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6559191240483802331L;
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
