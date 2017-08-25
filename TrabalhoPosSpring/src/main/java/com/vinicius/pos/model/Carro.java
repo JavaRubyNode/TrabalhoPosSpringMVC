@@ -57,6 +57,57 @@ public class Carro implements Serializable{
 	public void setModelo(Modelo modelo) {this.modelo = modelo;}
 	
 	
+	public Carro(String placa, String chassi, BigDecimal valorDaDiaria, Modelo modelo) {
+		super();
+		this.placa = placa;
+		this.chassi = chassi;
+		this.valorDaDiaria = valorDaDiaria;
+		this.modelo = modelo;
+	}
+	public Carro() {super();}
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((chassi == null) ? 0 : chassi.hashCode());
+		result = prime * result + ((modelo == null) ? 0 : modelo.hashCode());
+		result = prime * result + ((placa == null) ? 0 : placa.hashCode());
+		result = prime * result + ((valorDaDiaria == null) ? 0 : valorDaDiaria.hashCode());
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Carro other = (Carro) obj;
+		if (chassi == null) {
+			if (other.chassi != null)
+				return false;
+		} else if (!chassi.equals(other.chassi))
+			return false;
+		if (modelo == null) {
+			if (other.modelo != null)
+				return false;
+		} else if (!modelo.equals(other.modelo))
+			return false;
+		if (placa == null) {
+			if (other.placa != null)
+				return false;
+		} else if (!placa.equals(other.placa))
+			return false;
+		if (valorDaDiaria == null) {
+			if (other.valorDaDiaria != null)
+				return false;
+		} else if (!valorDaDiaria.equals(other.valorDaDiaria))
+			return false;
+		return true;
+	}
+	
+	
 	
 	
 	
