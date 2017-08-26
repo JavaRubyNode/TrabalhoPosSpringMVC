@@ -44,6 +44,10 @@ public class Modelo implements Serializable{
 
 	
 	
+	public Long getId() {return id;}
+	public void setId(Long id) {this.id = id;}
+	public List<Carro> getCarros() {return carros;}
+	public void setCarros(List<Carro> carros) {this.carros = carros;}
 	public String getDescricao() {return descricao;}
 	public void setDescricao(String descricao) {this.descricao = descricao;}
 	public Categoria getCategoria() {return categoria;}

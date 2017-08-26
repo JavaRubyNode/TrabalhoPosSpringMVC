@@ -4,10 +4,21 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.NumberFormat;
 
 @Entity
 public class Locacao implements Serializable {
@@ -21,15 +32,31 @@ public class Locacao implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	
+	@Column(nullable = false, precision = 10, scale = 2)
+	@NumberFormat(pattern = "#,##0.00")
 	private BigDecimal valorTotal;
+	
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date dataDeLocacao;
+	
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date dataDeDevolucao;
 	
+	
+	@OneToOne(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST })
+	@JoinColumn(name = "motorista_id")
 	private Motorista motorista;
+	
+	@OneToOne(cascade = { CascadeType.PERSIST }, fetch = FetchType.LAZY)
+	@JoinColumn(name="carro_id")
 	private Carro carro;
 	
 	
+	
+	public Long getId() {return id;}
+	public void setId(Long id) {this.id = id;}
 	public BigDecimal getValorTotal() {return valorTotal;}
 	public void setValorTotal(BigDecimal valorTotal) {this.valorTotal = valorTotal;}
 	public Date getDataDeLocacao() {return dataDeLocacao;}

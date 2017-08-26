@@ -2,13 +2,17 @@ package com.vinicius.pos.model;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 
@@ -44,9 +48,16 @@ public class Carro implements Serializable{
 	@NotNull(message="Modelo e obrigatorio")
 	private Modelo modelo;
 
+	@OneToMany(mappedBy = "carro", fetch=FetchType.LAZY,cascade={CascadeType.ALL} )
+	private List<Locacao> listaDeLocacoes;
 	
 	
 	
+	
+	public List<Locacao> getListaDeLocacoes() {return listaDeLocacoes;}
+	public void setListaDeLocacoes(List<Locacao> listaDeLocacoes) {this.listaDeLocacoes = listaDeLocacoes;}
+	public Long getId() {return id;}
+	public void setId(Long id) {this.id = id;}
 	public String getPlaca() {return placa;}
 	public void setPlaca(String placa) {this.placa = placa;}
 	public String getChassi() {return chassi;}
