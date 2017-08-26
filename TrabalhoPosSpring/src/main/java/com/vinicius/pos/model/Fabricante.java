@@ -26,11 +26,11 @@ public class Fabricante implements Serializable{
 	private Long id;
 	
 	@Column(nullable= false)
-	@NotEmpty(message="Nome e obrigatorio")
+	@NotEmpty(message="Nome e obrigatório")
 	private String nome;
 	
 	@Column(nullable=false)
-	@NotEmpty(message="Descrição do fabricante e obrigatorio")
+	@NotEmpty(message="Descrição do fabricante e obrigatório")
 	private String descricaoFabricante;
 	
 	@OneToMany(mappedBy="fabricante", fetch = FetchType.LAZY)
@@ -38,32 +38,20 @@ public class Fabricante implements Serializable{
 	
 	
 	
-	public List<Modelo> getModelos() {
-		return modelos;
-	}
-	public void setModelos(List<Modelo> modelos) {
-		this.modelos = modelos;
-	}
-	public String getNome() {
-		return nome;
-	}
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-	public String getDescricaoFabricante() {
-		return descricaoFabricante;
-	}
-	public void setDescricaoFabricante(String descricaoFabricante) {
-		this.descricaoFabricante = descricaoFabricante;
-	}
-	public Fabricante(String nome, String descricaoFabricante) {
-		super();
-		this.nome = nome;
-		this.descricaoFabricante = descricaoFabricante;
-	}
-	public Fabricante() {
-		super();
-	}
+	
+	
+	public Long getId() {return id;}
+	public void setId(Long id) {this.id = id;}
+	public List<Modelo> getModelos() {return modelos;}
+	public void setModelos(List<Modelo> modelos) {this.modelos = modelos;}
+	public String getNome() {return nome;}
+	public void setNome(String nome) {this.nome = nome;}
+	public String getDescricaoFabricante() {return descricaoFabricante;}
+	public void setDescricaoFabricante(String descricaoFabricante) {this.descricaoFabricante = descricaoFabricante;}
+	public Fabricante(String nome, String descricaoFabricante) {super();this.nome = nome;this.descricaoFabricante = descricaoFabricante;}
+	public Fabricante() {super();}
+	
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
