@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+ xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8"/>
+<title>Cadastro de locações</title>
+
+<link rel="stylesheet" th:href="@{/css/bootstrap.css}" />
+
+</head>
+<body>
+
+
+<div class="container">
+<br />
+<h2>Cadastro de Locação</h2>
+
+<a th:href="@{/locacao}" >Lista locações</a>
+
+<br />
+<br />
+
+<form class="container" action="/locacao" method="POST" th:object="${locacao}">
+
+<div class="alert alert-danger" role="alert" th:if="${#fields.hasAnyErrors()}">
+	<div th:each="detailedError : ${#fields.detailedErrors()}" >
+		<span th:text="${detailedError.message}"></span>
+	</div>
+</div>
+
+<div class="alert alert-success" role="alert" th:if="${!#strings.isEmpty(mensagem)}">
+  <span th:text="${mensagem}"></span>
+</div>
+
+<br />
+
+<input type="hidden" th:field="*{id}" />
+
+<div class="form-group">
+<label for="valorTotal">Valor total:</label>
+<input class="form-control" type="text" th:field="*{valorTotal}" />
+</div>
+
+<div class="form-group">
+<label for="dataDeLocacao">Data de locação:</label>
+<input class="form-control" type="text" th:field="*{dataDeLocacao}"/>
+</div>
+
+<div class="form-group">
+<label for="dataDeDevolucao">Data de devolucao:</label>
+<input class="form-control" type="text" th:field="*{dataDeDevolucao}"/>
+</div>
+
+<button class="btn btn-primary" type="submit">Salvar</button>
+
+</form>
+
+</div>
+
+</body>
+</html>

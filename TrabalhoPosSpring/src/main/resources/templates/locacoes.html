@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>Lista de Locações</title>
+
+<link rel="stylesheet" th:href="@{/css/bootstrap.css}" />
+</head>
+<body>
+<div class="container">
+<br/>
+	<h2>Lista de locações</h2>
+
+	<a th:href="@{/locacao/novo}">Nova locação</a>
+
+	<br/>
+	<br/>
+	
+	<table class="table">
+
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Data de locação</th>
+				<th>Data de devolução</th>
+				<th>Valor Total</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="locacao : ${locacao}">
+				<td th:text="${locacao.id}"></td>
+				<td th:text="${locacao.dataDeLocacao}"></td>
+				<td th:text="${locacao.dataDeDevolucao}"></td>
+				<td th:text="${locacao.valorTotal}"></td>
+				<td>
+					<a class="btn btn-primary" th:href="@{/locacao/editar/{id}(id=${locacao.id})}">Editar</a>
+					<a class="btn btn-danger" th:href="@{/locacao/excluir/{id}(id=${locacao.id})}">Excluir</a>
+				</td>
+			</tr>
+		</tbody>
+
+	</table>
+</div>
+</body>
+</html>

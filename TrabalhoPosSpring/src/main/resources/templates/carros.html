@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>Lista de fabricantes</title>
+
+<link rel="stylesheet" th:href="@{/css/bootstrap.css}" />
+</head>
+<body>
+<div class="container">
+<br />
+	<h2>Lista de Veículos</h2>
+
+	<a th:href="@{/carro/novo}">Novo veículo</a>
+
+	<br />
+	<br />
+	
+	<table class="table">
+
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Placa</th>
+				<th>Chassis</th>
+				<th>Valor da diária</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="carro : ${carro}">
+				<td th:text="${carro.id}"></td>
+				<td th:text="${carro.placa}"></td>
+				<td th:text="${carro.chassis}"></td>
+				<td th:text="${carro.valorDaDiaria}"></td>
+				<td>
+					<a class="btn btn-primary" th:href="@{/carro/editar/{id}(id=${carro.id})}">Editar</a>
+					<a class="btn btn-danger" th:href="@{/carro/excluir/{id}(id=${carro.id})}">Excluir</a>
+				</td>
+			</tr>
+		</tbody>
+
+	</table>
+</div>
+</body>
+</html>

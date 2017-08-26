@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>Lista de modelos</title>
+
+<link rel="stylesheet" th:href="@{/css/bootstrap.css}" />
+</head>
+<body>
+
+
+<div class="container">
+<br />
+	<h2>Lista de modelos</h2>
+	<a th:href="@{/modelo/novo}">Novo modelo</a>
+
+	<br />
+	<br />
+	
+	<table class="table">
+
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Descricao</th>
+				<th>Fabricante</th>
+				<th>Categoria</th>
+				<th>Operação</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="modelo : ${modelo}">
+				<td th:text="${modelo.id}"></td>
+				<td th:text="${modelo.descricao}"></td>
+				<td th:text="${modelo.fabricante}"></td>
+				<td th:text="${modelo.categoria}"></td>
+				<td>
+					<a class="btn btn-primary" th:href="@{/modelo/editar/{id}(id=${modelo.id})}">Editar</a>
+					<a class="btn btn-danger" th:href="@{/modelo/excluir/{id}(id=${modelo.id})}">Excluir</a>
+				</td>
+			</tr>
+		</tbody>
+
+	</table>
+</div>
+</body>
+</html>
