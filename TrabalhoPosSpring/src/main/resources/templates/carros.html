@@ -35,7 +35,7 @@
 			<tr th:each="carro : ${carro}">
 				<td th:text="${carro.id}"></td>
 				<td th:text="${carro.placa}"></td>
-				<td th:text="${carro.chassis}"></td>
+				<td th:text="${carro.chassi}"></td>
 				<td th:text="${carro.valorDaDiaria}"></td>
 				<td>
 					<a class="btn btn-primary" th:href="@{/carro/editar/{id}(id=${carro.id})}">Editar</a>
