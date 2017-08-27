@@ -1,21 +1,19 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
- xmlns:th="http://www.thymeleaf.org">
+ xmlns:th="http://www.thymeleaf.org"
+ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+ layout:decorator="layoutPadrao">
 <head>
 <meta charset="UTF-8"/>
 <title>Cadastro de modelos</title>
-
-<link rel="stylesheet" th:href="@{/css/bootstrap.css}" />
-
 </head>
-<body>
-
+<section layout:fragment="conteudo">
 
 <div class="container">
 <br />
 <h2>Cadastro de modelos</h2>
 
-<a th:href="@{/modelo}" >Lista Modelos</a>
+<a class="btn btn-primary" style="float: right;" th:href="@{/modelo}" >Lista Modelos</a>
 
 <br />
 <br />
@@ -39,6 +37,7 @@
 <div class="form-group">
 <label for="categoria">Categoria</label>
 <select class="custom-select" th:field="*{categoria}"> 
+	
 	<option th:each="categoria : ${todasAsCategorias}" 
 	  th:text="${categoria.descricao}" 
 	  th:value="${categoria}"></option>
@@ -49,7 +48,7 @@
 <label for="fabricante">Fabricante</label>
 <select class="custom-select" th:field="*{fabricante}"> 
 	<option th:each="fabricante : ${todosOsFabricantes}" 
-	  th:text="${fabricante.descricao}" 
+	  th:text="${fabricante.nome}" 
 	  th:value="${fabricante.id}"></option>
 </select>
 </div>
@@ -66,5 +65,5 @@
 
 </div>
 
-</body>
+</section>
 </html>

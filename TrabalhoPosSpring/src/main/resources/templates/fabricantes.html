@@ -1,19 +1,23 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org">
+ xmlns:th="http://www.thymeleaf.org"
+ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+ layout:decorator="layoutPadrao">
 <head>
 <meta charset="UTF-8" />
 <title>Lista de fabricantes</title>
 
-<link rel="stylesheet" th:href="@{/css/bootstrap.css}" />
+
 </head>
-<body>
+<section layout:fragment="conteudo">
+
 <br />
 <div class="container">
-	<h1>Lista de Fabricantes</h1>
+	<h3>Lista de Fabricantes</h3>
 
-	<a th:href="@{/fabricante/novo}">Novo fabricantes</a>
+	<a class="btn btn-primary"  style="float: right;" th:href="@{/fabricante/novo}">Novo fabricantes</a>
 
+	<br />
 	<br />
 	<br />
 	
@@ -41,5 +45,5 @@
 
 	</table>
 </div>
-</body>
+</section>
 </html>

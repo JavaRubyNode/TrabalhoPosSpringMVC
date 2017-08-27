@@ -1,22 +1,22 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org">
+ xmlns:th="http://www.thymeleaf.org"
+ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+ layout:decorator="layoutPadrao">
 <head>
 <meta charset="UTF-8" />
 <title>Lista de Locações</title>
-
-<link rel="stylesheet" th:href="@{/css/bootstrap.css}" />
 </head>
-<body>
+<section layout:fragment="conteudo">
 <div class="container">
 <br/>
 	<h2>Lista de locações</h2>
 
-	<a th:href="@{/locacao/novo}">Nova locação</a>
+	<a class="btn btn-primary" style="float: right;" th:href="@{/locacao/novo}">Nova locação</a>
 
 	<br/>
 	<br/>
-	
+	<br/>
 	<table class="table">
 
 		<thead>
@@ -42,5 +42,5 @@
 
 	</table>
 </div>
-</body>
+</section>
 </html>

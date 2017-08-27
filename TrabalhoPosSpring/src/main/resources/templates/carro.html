@@ -1,21 +1,22 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
- xmlns:th="http://www.thymeleaf.org">
+ xmlns:th="http://www.thymeleaf.org"
+ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+ layout:decorator="layoutPadrao">
 <head>
 <meta charset="UTF-8"/>
 <title>Cadastro de Veículos</title>
-
-<link rel="stylesheet" th:href="@{/css/bootstrap.css}" />
-
 </head>
-<body>
+
+<section layout:fragment="conteudo">
+
 
 
 <div class="container">
 <br />
-<h1>Cadastro de Veículo</h1>
+<h3>Cadastro de Veículo</h3>
 
-<a th:href="@{/carro}" >Lista Veículos</a>
+<a class="btn btn-primary" style="float: right;" th:href="@{/carro}" >Lista Veículos</a>
 
 <br />
 <br />
@@ -48,14 +49,14 @@
 
 <div class="form-group">
 <label for="valorDaDiaria">Valor da diária:</label>
-<input class="form-control" type="text" th:field="*{valorDaDiaria}"/>
+<input class="form-control" type="number" th:field="*{valorDaDiaria}"/>
 </div>
 
 
 <div class="form-group">
 <label for="modelo">Modelo</label>
 <select class="custom-select" th:field="*{modelo}"> 
-	<option th:each="modelo : ${todosOsFabricantes}" 
+	<option th:each="modelo : ${todosOsModelos}" 
 	  th:text="${modelo.descricao}" 
 	  th:value="${modelo.id}"></option>
 </select>
@@ -66,6 +67,6 @@
 </form>
 
 </div>
+</section>
 
-</body>
 </html>
