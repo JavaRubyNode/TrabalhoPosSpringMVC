@@ -18,11 +18,11 @@
 <br />
 <form class="container" action="/locacao" method="POST" th:object="${locacao}">
 
-<div class="alert alert-danger" role="alert" th:if="${#fields.hasAnyErrors()}">
-	<div th:each="detailedError : ${#fields.detailedErrors()}" >
-		<span th:text="${detailedError.message}"></span>
-	</div>
-</div>
+<div layout:include="mensagemErro"></div>
+
+<div layout:include="mensagemGeral"></div>
+
+
 
 <div class="alert alert-success" role="alert" th:if="${!#strings.isEmpty(mensagem)}">
   <span th:text="${mensagem}"></span>
@@ -32,19 +32,21 @@
 
 <input type="hidden" th:field="*{id}" />
 
-<div class="form-group">
-<label for="valorTotal">Valor total:</label>
-<input class="form-control" type="text" th:field="*{valorTotal}" />
-</div>
+
 
 <div class="form-group">
-<label for="dataDeLocacao">Data de locação:</label>
-<input class="form-control" type="text" th:field="*{dataDeLocacao}"/>
+<label for="dataDeLocacao" class="col-sm-2 control-label">Data de locação:</label>
+<input class="form-control" type="text" th:field="*{dataDeLocacao}" placeholder="Informe a Data de Locação"
+data-provide="datepicker" data-date-format="dd/mm/yyyy" data-date-language="pt-BR"
+data-date-autoclose="true" data-date-today-highlight="true" data-date-orientation="bottom"/>
 </div>
 
-<div class="form-group">
-<label for="dataDeDevolucao">Data de devolucao:</label>
-<input class="form-control" type="text" th:field="*{dataDeDevolucao}"/>
+
+<div class="form-group" >
+<label for="dataDeDevolucao" class="col-sm-2 control-label" >Data de devolucao:</label>
+<input class="form-control" type="text" th:field="*{dataDeDevolucao}" placeholder="Informe a Data de Devolução"
+data-provide="datepicker" data-date-format="dd/mm/yyyy" data-date-language="pt-BR"
+data-date-autoclose="true" data-date-today-highlight="true" data-date-orientation="bottom"/>
 </div>
 
 <div class="form-group">

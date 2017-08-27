@@ -36,7 +36,7 @@
 
 <div class="form-group">
 <label for="categoria">Categoria</label>
-<select class="custom-select" th:field="*{categoria}"> 
+<select class="custom-select" th:field="*{categoria}" > 
 	
 	<option th:each="categoria : ${todasAsCategorias}" 
 	  th:text="${categoria.descricao}" 
@@ -55,7 +55,7 @@
 
 <div class="form-group">
 <label for="nome">Descrição:</label>
-<input class="form-control" type="text" th:field="*{descricao}" />
+<input class="form-control" type="text" placeholder="Informe a Descriçao do Modelo cor, etc" th:field="*{descricao}" />
 </div>
 
 

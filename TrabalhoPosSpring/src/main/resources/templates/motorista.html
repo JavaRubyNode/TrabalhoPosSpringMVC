@@ -17,11 +17,9 @@
 
 <form class="container" action="/motorista" method="POST" th:object="${motorista}">
 
-<div class="alert alert-danger" role="alert" th:if="${#fields.hasAnyErrors()}">
-	<div th:each="detailedError : ${#fields.detailedErrors()}" >
-		<span th:text="${detailedError.message}"></span>
-	</div>
-</div>
+<div layout:include="mensagemErro"></div>
+
+<div layout:include="mensagemGeral"></div>
 
 <div class="alert alert-success" role="alert" th:if="${!#strings.isEmpty(mensagem)}">
   <span th:text="${mensagem}"></span>
@@ -33,17 +31,17 @@
 
 <div class="form-group">
 <label for="nome">Nome:</label>
-<input class="form-control" type="text" th:field="*{nome}" />
+<input class="form-control " type="text" placeholder="Informe um Nome" th:field="*{nome}" />
 </div>
 
 <div class="form-group">
 <label for="cpf">CPF:</label>
-<input class="form-control" type="text" th:field="*{cpf}"/>
+<input class="form-control js-cpf" data-mask="000.000.000-00" placeholder="Informe um CPF" type="text" th:field="*{cpf}"/>
 </div>
 
 <div class="form-group">
 <label for="cnh">CNH:</label>
-<input class="form-control" type="text" th:field="*{cnh}" />
+<input class="form-control js-cnh" data-mask="00000000000" placeholder="Informe um CNH" type="text" th:field="*{cnh}" />
 </div>
 
 <div class="form-group">

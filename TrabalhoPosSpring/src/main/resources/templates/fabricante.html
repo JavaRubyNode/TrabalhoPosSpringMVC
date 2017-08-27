@@ -23,11 +23,9 @@
 
 <form class="container" action="/fabricante" method="POST" th:object="${fabricante}">
 
-<div class="alert alert-danger" role="alert" th:if="${#fields.hasAnyErrors()}">
-	<div th:each="detailedError : ${#fields.detailedErrors()}" >
-		<span th:text="${detailedError.message}"></span>
-	</div>
-</div>
+<div layout:include="mensagemErro"></div>
+
+<div layout:include="mensagemGeral"></div>
 
 <div class="alert alert-success" role="alert" th:if="${!#strings.isEmpty(mensagem)}">
   <span th:text="${mensagem}"></span>
@@ -39,12 +37,12 @@
 
 <div class="form-group">
 <label for="nome">Nome:</label>
-<input class="form-control" type="text" th:field="*{nome}" />
+<input class="form-control" placeholder="Informe o Nome" type="text" th:field="*{nome}" />
 </div>
 
 <div class="form-group">
 <label for="descricao">Descrição:</label>
-<input class="form-control" type="text" th:field="*{descricaoFabricante}"/>
+<input class="form-control" type="text" placeholder="Informe a Descrição do Fabricante" th:field="*{descricaoFabricante}"/>
 </div>
 
 <button class="btn btn-primary" type="submit">Salvar</button>
