@@ -6,62 +6,82 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
+import com.vinicius.pos.model.Carro;
 import com.vinicius.pos.model.Locacao;
-import com.vinicius.pos.repository.ICarroRepository;
-import com.vinicius.pos.repository.ILocacaoRepository;
-import com.vinicius.pos.repository.IModeloRepository;
+import com.vinicius.pos.model.Motorista;
+import com.vinicius.pos.servicos.CarroService;
+import com.vinicius.pos.servicos.LocacaoService;
+import com.vinicius.pos.servicos.MotoristaService;
 
 
 @Controller
 @RequestMapping("/locacao")
 public class LocacaoCtrl {
 	
+
+	private final String CADASTRO="locacao";
+	private final String LISTA_TODOS="locacoes";
+	private final String REDIRECT=CADASTRO;
 	
-	@Autowired ILocacaoRepository daoLocacao;
-	@Autowired ICarroRepository daoCarro;
-	@Autowired IModeloRepository daoMotorista;
 	
-	@RequestMapping(value="/novo", method = RequestMethod.GET)
+	
+	@Autowired LocacaoService serviceLocacao;
+	@Autowired CarroService serviceCarro;
+	@Autowired MotoristaService serviceMotorista;
+	
+	@GetMapping(value="/novo")
 	public ModelAndView novo(){
-		ModelAndView mv = new ModelAndView("/locacao");
+		ModelAndView mv = new ModelAndView("/"+CADASTRO);
 		mv.addObject(new Locacao());
 		return mv;
 	}
 
-	@RequestMapping(method= RequestMethod.POST)
+	@PostMapping
 	public ModelAndView salvar(@Validated Locacao locacao ,Errors errors, RedirectAttributes redirectAttributes){
-		if(errors.hasErrors()) return new ModelAndView("locacao");
-		daoLocacao.save(locacao);
+		if(errors.hasErrors()) return new ModelAndView(CADASTRO);
+		serviceLocacao.salvar(locacao);
 		redirectAttributes.addFlashAttribute("mensagem","Locacao salvo com sucesso");
-		return new ModelAndView("redirect:/locacao");
+		return new ModelAndView("redirect:/"+REDIRECT);
 	}
 	
-	@RequestMapping(method = RequestMethod.GET)
+	@GetMapping
 	public ModelAndView listar(){
-		ModelAndView mv = new ModelAndView("locacoes");
-		List<Locacao> locacoes = daoLocacao.findAll();
+		ModelAndView mv = new ModelAndView(LISTA_TODOS);
+		List<Locacao> locacoes = serviceLocacao.listar();
 		mv.addObject("locacao",locacoes);
 		return mv;
 	}
 	
-	@RequestMapping(value="/editar/{id}",method =RequestMethod.GET)
+	@GetMapping(value="/editar/{id}")
 	public ModelAndView editar(@PathVariable("id") Long id){
-		Locacao locacao = daoLocacao.findOne(id);
-		ModelAndView mv = new ModelAndView("locacao");
+		Locacao locacao = serviceLocacao.buscarPorID(id);
+		ModelAndView mv = new ModelAndView(CADASTRO);
 		mv.addObject(locacao);
 		return mv;
 	}
 	
-	@RequestMapping(value="/excluir/{id}",method =RequestMethod.GET)
+	@GetMapping(value="/excluir/{id}")
 	public ModelAndView excluir(@PathVariable("id") Long id){
-		daoLocacao.delete(id);
-		return new ModelAndView("redirect:/locacao");
+		serviceLocacao.delete(id);
+		return new ModelAndView("redirect:/"+REDIRECT);
+	}
+	
+	@ModelAttribute("todosOsMotoristas")
+	public List<Motorista> todosOsMotoristas(){
+		return serviceMotorista.listar();
+	}
+	
+	
+	@ModelAttribute("todosOsCarros")
+	public List<Carro> todosOSCarros(){
+		return serviceCarro.listar();
 	}
 
 	
