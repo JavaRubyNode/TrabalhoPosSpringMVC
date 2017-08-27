@@ -1,19 +1,18 @@
 package com.vinicius.pos.model;
 
 import java.io.Serializable;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.NotEmpty;
 
 import com.vinicius.pos.enums.Categoria;
 
@@ -30,24 +29,23 @@ public class Modelo implements Serializable{
 	private Long id;
 	
 	@Column(nullable=false)
+	@NotEmpty(message="Descrição e obrigatório")
 	private String descricao;
 	
 	@Enumerated(EnumType.STRING)
+	@NotNull(message="Categoria e obrigatório")
 	private Categoria categoria;
 	
-	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="fabricate_id")
+	@ManyToOne
+	@NotNull(message="Fabricante e obrigatório")
 	private Fabricante fabricante;
 	
-	@OneToMany(mappedBy="modelo", fetch = FetchType.LAZY)
-	private List<Carro> carros;
+	
 
 	
 	
 	public Long getId() {return id;}
 	public void setId(Long id) {this.id = id;}
-	public List<Carro> getCarros() {return carros;}
-	public void setCarros(List<Carro> carros) {this.carros = carros;}
 	public String getDescricao() {return descricao;}
 	public void setDescricao(String descricao) {this.descricao = descricao;}
 	public Categoria getCategoria() {return categoria;}

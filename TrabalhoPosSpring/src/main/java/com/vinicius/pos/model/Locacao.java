@@ -2,20 +2,18 @@ package com.vinicius.pos.model;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.NumberFormat;
@@ -37,24 +35,24 @@ public class Locacao implements Serializable {
 	private BigDecimal valorTotal;
 	
 	@Temporal(TemporalType.DATE)
+	@NotNull(message="Data de Locação e obrigatória")
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date dataDeLocacao;
 	
 	@Temporal(TemporalType.DATE)
+	@NotNull(message="Data de Devolução e obrigatória")
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date dataDeDevolucao;
 	
 	
-	@OneToOne(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST })
-	@JoinColumn(name = "motorista_id")
+	@ManyToOne
+	@NotNull(message="Motorista e obrigatória")
 	private Motorista motorista;
 	
-	@OneToOne(cascade = { CascadeType.PERSIST }, fetch = FetchType.LAZY)
-	@JoinColumn(name="carro_id")
+	@ManyToOne
 	private Carro carro;
 	
-	
-	
+
 	public Long getId() {return id;}
 	public void setId(Long id) {this.id = id;}
 	public BigDecimal getValorTotal() {return valorTotal;}

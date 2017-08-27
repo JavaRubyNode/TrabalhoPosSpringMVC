@@ -33,8 +33,7 @@ public class Fabricante implements Serializable{
 	@NotEmpty(message="Descrição do fabricante e obrigatório")
 	private String descricaoFabricante;
 	
-	@OneToMany(mappedBy="fabricante", fetch = FetchType.LAZY)
-	private List<Modelo> modelos;
+	
 	
 	
 	
@@ -42,8 +41,6 @@ public class Fabricante implements Serializable{
 	
 	public Long getId() {return id;}
 	public void setId(Long id) {this.id = id;}
-	public List<Modelo> getModelos() {return modelos;}
-	public void setModelos(List<Modelo> modelos) {this.modelos = modelos;}
 	public String getNome() {return nome;}
 	public void setNome(String nome) {this.nome = nome;}
 	public String getDescricaoFabricante() {return descricaoFabricante;}
