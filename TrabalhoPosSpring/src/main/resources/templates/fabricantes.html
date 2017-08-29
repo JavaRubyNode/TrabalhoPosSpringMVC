@@ -25,20 +25,20 @@
 
 		<thead>
 			<tr>
-				<th>Id</th>
-				<th>Nome</th>
-				<th>Descrição</th>
-				<th>Operação</th>
+				<th style="text-align: center;" >Id</th>
+				<th style="text-align: center;">Nome</th>
+				<th style="text-align: center;">Descrição</th>
+				<th style="text-align: center;" >Operação</th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr th:each="fabricante : ${fabricante}">
-				<td th:text="${fabricante.id}"></td>
-				<td th:text="${fabricante.nome}"></td>
-				<td th:text="${fabricante.descricaoFabricante}"></td>
+				<td th:text="${fabricante.id}" style="text-align: center;"></td>
+				<td th:text="${fabricante.nome}" style="text-align: center;"></td>
+				<td th:text="${fabricante.descricaoFabricante}" style="text-align: center;"></td>
 				<td>
-					<a class="btn btn-primary" th:href="@{/fabricante/editar/{id}(id=${fabricante.id})}">Editar</a>
-					<a class="btn btn-danger" th:href="@{/fabricante/excluir/{id}(id=${fabricante.id})}">Excluir</a>
+					<a class="btn btn-primary" style="text-align: center;" th:href="@{/fabricante/editar/{id}(id=${fabricante.id})}">Editar</a>
+					<a class="btn btn-danger" style="text-align: center;" th:href="@{/fabricante/excluir/{id}(id=${fabricante.id})}">Excluir</a>
 				</td>
 			</tr>
 		</tbody>

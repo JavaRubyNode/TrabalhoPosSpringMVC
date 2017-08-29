@@ -25,21 +25,21 @@
 
 		<thead>
 			<tr>
-				<th>Id</th>
-				<th>Placa</th>
-				<th>Chassis</th>
-				<th>Valor da diária</th>
+				<th style="text-align: center;">Id</th>
+				<th style="text-align: center;">Placa</th>
+				<th style="text-align: center;" >Chassis</th>
+				<th style="text-align: center;">Valor da diária</th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr th:each="carro : ${carro}">
-				<td th:text="${carro.id}"></td>
-				<td th:text="${carro.placa}"></td>
-				<td th:text="${carro.chassi}"></td>
-				<td th:text="${carro.valorDaDiaria}"></td>
+				<td th:text="${carro.id}" style="text-align: center;"></td>
+				<td th:text="${carro.placa}" style="text-align: center;"></td>
+				<td th:text="${carro.chassi}" style="text-align: center;"></td>
+				<td th:text="|R$ ${{carro.valorDaDiaria}}|" style="text-align: center;"></td>
 				<td>
-					<a class="btn btn-primary" th:href="@{/carro/editar/{id}(id=${carro.id})}">Editar</a>
-					<a class="btn btn-danger" th:href="@{/carro/excluir/{id}(id=${carro.id})}">Excluir</a>
+					<a class="btn btn-primary" style="text-align: center;" th:href="@{/carro/editar/{id}(id=${carro.id})}">Editar</a>
+					<a class="btn btn-danger" style="text-align: center;" th:href="@{/carro/excluir/{id}(id=${carro.id})}">Excluir</a>
 				</td>
 			</tr>
 		</tbody>

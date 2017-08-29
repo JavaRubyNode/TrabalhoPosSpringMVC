@@ -21,22 +21,24 @@
 	<table class="table">
 		<thead>
 			<tr>
-				<th>Id</th>
-				<th>Nome</th>
-				<th>CPF</th>
-				<th>CNH</th>
-				<th>Operação</th>
+				<th style="text-align: center;" >Id</th>
+				<th style="text-align: center;" >Nome</th>
+				<th style="text-align: center;">CPF</th>
+				<th style="text-align: center;" >CNH</th>
+				<th style="text-align: center;" >Operação</th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr th:each="motorista : ${motorista}">
-				<td th:text="${motorista.id}"></td>
-				<td th:text="${motorista.nome}"></td>
-				<td th:text="${motorista.cpf}"></td>
-				<td th:text="${motorista.cnh}"></td>
+				<td th:text="${motorista.id}" style="text-align: center;"></td>
+				<td th:text="${motorista.nome}" style="text-align: center;" ></td>
+				<td th:text="${motorista.cpf}" style="text-align: center;"></td>
+				<td th:text="${motorista.cnh}" style="text-align: center;" ></td>
+				
 				<td>
-					<a class="btn btn-primary" th:href="@{/motorista/editar/{id}(id=${motorista.id})}">Editar</a>
-					<a class="btn btn-danger" th:href="@{/motorista/excluir/{id}(id=${motorista.id})}">Excluir</a>
+					
+					<a class="btn btn-primary"   th:href="@{/motorista/editar/{id}(id=${motorista.id})}">Editar</a>
+					<a class="btn btn-danger"  th:href="@{/motorista/excluir/{id}(id=${motorista.id})}">Excluir</a>
 				</td>
 			</tr>
 		</tbody>

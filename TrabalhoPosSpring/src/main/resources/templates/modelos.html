@@ -25,22 +25,22 @@
 
 		<thead>
 			<tr>
-				<th>Id</th>
-				<th>Descricao</th>
-				<th>Fabricante</th>
-				<th>Categoria</th>
-				<th>Operação</th>
+				<th style="text-align: center;">Id</th>
+				<th style="text-align: center;">Descricao</th>
+				<th style="text-align: center;">Fabricante</th>
+				<th style="text-align: center;">Categoria</th>
+				<th style="text-align: center;" >Operação</th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr th:each="m : ${modelo}">
-				<td th:text="${m.id}"></td>
-				<td th:text="${m.descricao}"></td>
-				<td th:text="${m.fabricante.nome}"></td>
-				<td th:text="${m.categoria.descricao}"></td>
+				<td th:text="${m.id}" style="text-align: center;"></td>
+				<td th:text="${m.descricao}" style="text-align: center;"></td>
+				<td th:text="${m.fabricante.nome}" style="text-align: center;"></td>
+				<td th:text="${m.categoria.descricao}" style="text-align: center;"></td>
 				<td>
-					<a class="btn btn-primary" th:href="@{/modelo/editar/{id}(id=${m.id})}">Editar</a>
-					<a class="btn btn-danger" th:href="@{/modelo/excluir/{id}(id=${m.id})}">Excluir</a>
+					<a class="btn btn-primary" style="text-align: center;" th:href="@{/modelo/editar/{id}(id=${m.id})}">Editar</a>
+					<a class="btn btn-danger" style="text-align: center;" th:href="@{/modelo/excluir/{id}(id=${m.id})}">Excluir</a>
 				</td>
 			</tr>
 		</tbody>

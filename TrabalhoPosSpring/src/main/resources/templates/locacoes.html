@@ -21,21 +21,28 @@
 
 		<thead>
 			<tr>
-				<th>Id</th>
-				<th>Data de locação</th>
-				<th>Data de devolução</th>
-				<th>Valor Total</th>
+				<th style="text-align: center;">Id</th>
+				<th style="text-align: center;" >Dt.Locação</th>
+				<th style="text-align: center;" >Dt.Devolução</th>
+				<th style="text-align: center;">Total</th>
+				<th style="text-align: center;">Dias Locados</th>
+				<th style="text-align: center;">Diária</th>
+				<th style="text-align: center;">Carro</th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr th:each="locacao : ${locacao}">
-				<td th:text="${locacao.id}"></td>
-				<td th:text="${locacao.dataDeLocacao}"></td>
-				<td th:text="${locacao.dataDeDevolucao}"></td>
-				<td th:text="${locacao.valorTotal}"></td>
+				<td th:text="${locacao.id}" style="text-align: center;"></td>
+				<td th:text="${{locacao.dataDeLocacao}}" style="text-align: center;"></td>
+				<td th:text="${{locacao.dataDeDevolucao}}" style="text-align: center;"></td>
+				<td th:text="|R$ ${{locacao.valorTotal}}|" style="text-align: center;"></td>
+				<td th:text="${#numbers.formatInteger(locacao.diasLocados,0,'NONE')}" style="text-align: center;"></td>
+				<td th:text="|R$ ${{locacao.carro.valorDaDiaria}}|" style="text-align: center;"></td>
+				<td th:text="${locacao.carro.placa}" style="text-align: center;"></td>
 				<td>
-					<a class="btn btn-primary" th:href="@{/locacao/editar/{id}(id=${locacao.id})}">Editar</a>
-					<a class="btn btn-danger" th:href="@{/locacao/excluir/{id}(id=${locacao.id})}">Excluir</a>
+				
+					<a class="btn btn-primary" style="text-align: center;" th:href="@{/locacao/editar/{id}(id=${locacao.id})}">Editar</a>
+					<a class="btn btn-danger" style="text-align: center;" th:href="@{/locacao/excluir/{id}(id=${locacao.id})}">Excluir</a>
 				</td>
 			</tr>
 		</tbody>
