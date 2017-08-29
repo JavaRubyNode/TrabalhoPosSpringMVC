@@ -2,7 +2,6 @@ package com.vinicius.pos.model;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -13,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -52,7 +52,12 @@ public class Locacao implements Serializable {
 	@ManyToOne
 	private Carro carro;
 	
+	@Column(nullable=false)
+	private BigDecimal diasLocados;
 
+	
+	public BigDecimal getDiasLocados() {return diasLocados;}
+	public void setDiasLocados(BigDecimal diasLocados) {this.diasLocados = diasLocados;}
 	public Long getId() {return id;}
 	public void setId(Long id) {this.id = id;}
 	public BigDecimal getValorTotal() {return valorTotal;}

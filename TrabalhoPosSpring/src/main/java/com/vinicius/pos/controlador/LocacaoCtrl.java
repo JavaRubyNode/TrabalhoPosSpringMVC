@@ -1,5 +1,6 @@
 package com.vinicius.pos.controlador;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,6 +47,8 @@ public class LocacaoCtrl {
 	@PostMapping
 	public ModelAndView salvar(@Validated Locacao locacao ,Errors errors, RedirectAttributes redirectAttributes){
 		if(errors.hasErrors()) return new ModelAndView(CADASTRO);
+		locacao.setValorTotal(diasLocados(locacao).multiply(locacao.getCarro().getValorDaDiaria()));
+		locacao.setDiasLocados(diasLocados(locacao));
 		serviceLocacao.salvar(locacao);
 		redirectAttributes.addFlashAttribute("mensagem","Locacao salvo com sucesso");
 		return new ModelAndView("redirect:/"+REDIRECT);
@@ -83,6 +86,14 @@ public class LocacaoCtrl {
 	public List<Carro> todosOSCarros(){
 		return serviceCarro.listar();
 	}
+
+	
+	public BigDecimal diasLocados(Locacao locacao){
+		long diferenca =locacao.getDataDeDevolucao().getTime()- locacao.getDataDeLocacao().getTime();
+	     return new BigDecimal(diferenca / (1000 * 60 *60 *24));
+		
+	}
+	
 
 	
 }
